@@ -3,7 +3,8 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Register Page</title>
+    <title>FixCare | {{ __('index.register') }}</title>
+    <link rel="icon" href="{{ asset('assets/img/fixcare/Screenshot 2025-03-12 002215.png') }}" type="image/icon type">
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE 4 | Register Page" />
@@ -55,7 +56,7 @@
       <!-- /.register-logo -->
       <div class="card">
         <div class="card-body register-card-body">
-          <p class="register-box-msg">Register a new membership</p>
+          <p class="register-box-msg">{{ __('index.new_member') }}</p>
 
 
 
@@ -63,10 +64,10 @@
             @csrf
             <div class="mb-3">
 
-                <input type="text"  hidden class="form-control" id="phone" name="role" value="{{ $role }}">
+                <input type="text"  hidden class="form-control" id="role" name="role" value="{{ $role }}">
             </div>
             <div class="input-group mb-3">
-              <input type="text" id="name" class="form-control"  name="name" value="{{ old('name') }}" placeholder="Full Name" required autofocus autocomplete="name" />
+              <input type="text" id="name" class="form-control"  name="name" value="{{ old('name') }}" placeholder="{{ __('index.name') }}" required autofocus autocomplete="name" />
               <div class="input-group-text"><span class="bi bi-person"></span></div>
               @if ($errors->has('name'))
                 <div class="alert alert-danger mt-1  w-100">
@@ -78,7 +79,7 @@
             </div>
 
             <div class="input-group mb-3">
-              <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" />
+              <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('index.email') }}" />
               <div class="input-group-text"><span class="bi bi-envelope"></span></div>
               @if ($errors->has('email'))
                 <div class="alert alert-danger mt-1 w-100">
@@ -90,7 +91,7 @@
             </div>
 
             <div class="input-group mb-3">
-              <input type="password" id="password" class="form-control" placeholder="Password" name="password"
+              <input type="password" id="password" class="form-control" placeholder="{{ __('index.password') }}" name="password"
               required autocomplete="new-password" />
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
               @if ($errors->has('password'))
@@ -102,7 +103,7 @@
              @endif
             </div>
             <div class="input-group mb-3">
-              <input type="password" id="password_confirmation" class="form-control" placeholder="Confirm Password"  name="password_confirmation" required autocomplete="new-password" />
+              <input type="password" id="password_confirmation" class="form-control" placeholder="{{ __('index.password_confirmation') }}"  name="password_confirmation" required autocomplete="new-password" />
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
               @if ($errors->has('password_confirmation'))
                 <div class="alert alert-danger mt-1  w-100">
@@ -114,7 +115,7 @@
             </div>
             @if ($role != 'client')
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" placeholder="{{ __('index.phone') }}">
                     @if ($errors->has('phone'))
                     <div class="alert alert-danger mt-1  w-100">
                         @foreach ($errors->get('phone') as $message)
@@ -124,7 +125,7 @@
                  @endif
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name') }}" placeholder="Company Name">
+                    <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name') }}" placeholder="{{ __('index.company_name') }}">
                     @if ($errors->has('company_name'))
                     <div class="alert alert-danger mt-1  w-100">
                         @foreach ($errors->get('company_name') as $message)
@@ -134,7 +135,7 @@
                  @endif
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" id="experience_years" name="experience_years" value="{{ old('experience_years') }}" placeholder="Experience Years">
+                    <input type="number" class="form-control" id="experience_years" name="experience_years" value="{{ old('experience_years') }}" placeholder="{{ __('index.experience_years') }}">
                     @if ($errors->has('experience_years'))
                     <div class="alert alert-danger mt-1  w-100">
                         @foreach ($errors->get('experience_years') as $message)
@@ -144,7 +145,7 @@
                  @endif
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" id="consultation_fee" name="consultation_fee" step="0.01" value="{{ old('consultation_fee') }}" placeholder="Consultation Fee">
+                    <input type="number" class="form-control" id="consultation_fee" name="consultation_fee" step="0.01" value="{{ old('consultation_fee') }}" placeholder="{{ __('index.consultation_fee') }}">
                     @if ($errors->has('consultation_fee'))
                     <div class="alert alert-danger mt-1  w-100">
                         @foreach ($errors->get('consultation_fee') as $message)
@@ -154,7 +155,7 @@
                  @endif
                 </div>
                 <div class="mb-3">
-                    <label for="cv_path" class="form-label">Upload CV</label>
+                    <label for="cv_path" class="form-label">{{ __('index.cv_path') }}</label>
                     <input type="file" class="form-control" id="cv_path" name="cv_path">
                     @if ($errors->has('cv_path'))
                     <div class="alert alert-danger mt-1  w-100">
@@ -173,9 +174,9 @@
 
               </div> --}}
               <!-- /.col -->
-              <div class="col-4">
+              <div class="col-6">
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary">Sign In</button>
+                  <button type="submit" class="btn btn-primary">{{ __('index.sign_up') }}</button>
                 </div>
               </div>
               <!-- /.col -->
@@ -184,7 +185,7 @@
           </form>
 
           <p class="mt-1 mb-0">
-            <a href="{{ route('login') }}" class="text-center"> I already have a membership </a>
+            <a href="{{ route('login') }}" class="text-center"> {{ __('index.member') }} </a>
           </p>
         </div>
         <!-- /.register-card-body -->

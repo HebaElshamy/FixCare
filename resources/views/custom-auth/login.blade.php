@@ -3,10 +3,11 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>FixCare | Login</title>
+    <title>FixCare | {{ __('index.login') }}</title>
+    <link rel="icon" href="{{ asset('assets/img/fixcare/Screenshot 2025-03-12 002215.png') }}" type="image/icon type">
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="AdminLTE 4 | Login Page" />
+    <meta name="title" content="AdminLTE 4  | Login Page" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -55,11 +56,13 @@
       <!-- /.login-logo -->
       <div class="card">
         <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
+          <p class="login-box-msg">{{ __('index.session') }}</p>
+
+         
           <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="input-group mb-3">
-              <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" required autofocus autocomplete="email" />
+              <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="{{ __('index.email') }}" required autofocus autocomplete="email" />
               <div class="input-group-text"><span class="bi bi-envelope"></span></div>
                 @if ($errors->has('email'))
                     <div class="alert alert-danger mt-2">
@@ -71,7 +74,7 @@
 
             </div>
             <div class="input-group mb-3">
-              <input id="password" type="password"  name="password" class="form-control" placeholder="Password" required autocomplete="current-password" />
+              <input id="password" type="password"  name="password" class="form-control" placeholder="{{ __('index.password') }}" required autocomplete="current-password" />
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
                 @if ($errors->has('password'))
                     <div class="alert alert-danger mt-2">
@@ -85,9 +88,9 @@
             <div class="row">
 
               <!-- /.col -->
-              <div class="col-4">
+              <div class="col-6">
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary">Sign In</button>
+                  <button type="submit" class="btn btn-primary">{{ __('index.sign_in') }}</button>
                 </div>
               </div>
               <!-- /.col -->
@@ -97,7 +100,7 @@
 
           <p class="mb-1"><a href="forgot-password.html"></a></p>
           <p class="mb-0">
-            <a href="{{ route('register', ['role' => 'client']) }}" class="text-center"> Register a new membership </a>
+            <a href="{{ route('register', ['role' => 'client']) }}" class="text-center">{{ __('index.register_new') }} </a>
           </p>
         </div>
         <!-- /.login-card-body -->
