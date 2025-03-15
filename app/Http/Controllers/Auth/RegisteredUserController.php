@@ -51,6 +51,7 @@ class RegisteredUserController extends Controller
                 'consultation_fee' => ['required', 'numeric', 'min:0'],
             ]);
         }
+
         $user = new User();
         $user->role = $validated['role'];
         $user->is_approved = ($validated['role'] === 'client') ? true : false;
@@ -81,5 +82,30 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    // public function checkEmail(Request $request)
+    // {
+    //     $email = $request->input('email');
+
+    //     // تحقق إذا كان البريد الإلكتروني موجودًا في قاعدة البيانات
+    //     $exists = User::where('email', $email)->exists();
+
+    //     return response()->json(['valid' => !$exists]);
+    // }
+// في ملف Controller الخاص بالتحقق من البريد الإلكتروني
+public function checkEmail(Request $request)
+{
+    $email = $request->input('email');
+    $exists = User::where('email', $email)->exists();
+
+    return response()->json(!$exists);
+}
+
+
+
+
+
+
+
 
 }

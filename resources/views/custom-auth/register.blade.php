@@ -6,6 +6,8 @@
     <title>FixCare | {{ __('index.register') }}</title>
     <link rel="icon" href="{{ asset('assets/img/fixcare/Screenshot 2025-03-12 002215.png') }}" type="image/icon type">
     <!--begin::Primary Meta Tags-->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE 4 | Register Page" />
     <meta name="author" content="ColorlibHQ" />
@@ -49,125 +51,93 @@
   <!--end::Head-->
   <!--begin::Body-->
   <body class="register-page bg-body-secondary">
-    <div class="register-box">
+    <div class="register-box w-50">
       <div class="register-logo">
         <a href="{{ url('/') }}"><b>Fix</b>Care</a>
       </div>
       <!-- /.register-logo -->
-      <div class="card">
+      <div class="card ">
         <div class="card-body register-card-body">
           <p class="register-box-msg">{{ __('index.new_member') }}</p>
 
-
-
           <form action="{{ url('register') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
-
-                <input type="text"  hidden class="form-control" id="role" name="role" value="{{ $role }}">
-            </div>
-            <div class="input-group mb-3">
-              <input type="text" id="name" class="form-control"  name="name" value="{{ old('name') }}" placeholder="{{ __('index.name') }}" required autofocus autocomplete="name" />
-              <div class="input-group-text"><span class="bi bi-person"></span></div>
-              @if ($errors->has('name'))
-                <div class="alert alert-danger mt-1  w-100">
-                    @foreach ($errors->get('name') as $message)
-                        <p>{{ $message }}</p>
-                    @endforeach
-                </div>
-              @endif
-            </div>
-
-            <div class="input-group mb-3">
-              <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('index.email') }}" />
-              <div class="input-group-text"><span class="bi bi-envelope"></span></div>
-              @if ($errors->has('email'))
-                <div class="alert alert-danger mt-1 w-100">
-                    @foreach ($errors->get('email') as $message)
-                        <p>{{ $message }}</p>
-                    @endforeach
-                </div>
-             @endif
-            </div>
-
-            <div class="input-group mb-3">
-              <input type="password" id="password" class="form-control" placeholder="{{ __('index.password') }}" name="password"
-              required autocomplete="new-password" />
-              <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
-              @if ($errors->has('password'))
-                <div class="alert alert-danger mt-1  w-100">
-                    @foreach ($errors->get('password') as $message)
-                        <p>{{ $message }}</p>
-                    @endforeach
-                </div>
-             @endif
-            </div>
-            <div class="input-group mb-3">
-              <input type="password" id="password_confirmation" class="form-control" placeholder="{{ __('index.password_confirmation') }}"  name="password_confirmation" required autocomplete="new-password" />
-              <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
-              @if ($errors->has('password_confirmation'))
-                <div class="alert alert-danger mt-1  w-100">
-                    @foreach ($errors->get('password_confirmation') as $message)
-                        <p>{{ $message }}</p>
-                    @endforeach
-                </div>
-             @endif
-            </div>
-            @if ($role != 'client')
+            <div class="col-5">
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" placeholder="{{ __('index.phone') }}">
-                    @if ($errors->has('phone'))
-                    <div class="alert alert-danger mt-1  w-100">
-                        @foreach ($errors->get('phone') as $message)
-                            <p>{{ $message }}</p>
-                        @endforeach
-                    </div>
-                 @endif
+                    <input type="text"  hidden class="form-control" id="role" name="role" value="{{ $role }}">
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name') }}" placeholder="{{ __('index.company_name') }}">
-                    @if ($errors->has('company_name'))
-                    <div class="alert alert-danger mt-1  w-100">
-                        @foreach ($errors->get('company_name') as $message)
-                            <p>{{ $message }}</p>
-                        @endforeach
-                    </div>
-                 @endif
-                </div>
-                <div class="mb-3">
-                    <input type="number" class="form-control" id="experience_years" name="experience_years" value="{{ old('experience_years') }}" placeholder="{{ __('index.experience_years') }}">
-                    @if ($errors->has('experience_years'))
-                    <div class="alert alert-danger mt-1  w-100">
-                        @foreach ($errors->get('experience_years') as $message)
-                            <p>{{ $message }}</p>
-                        @endforeach
-                    </div>
-                 @endif
-                </div>
-                <div class="mb-3">
-                    <input type="number" class="form-control" id="consultation_fee" name="consultation_fee" step="0.01" value="{{ old('consultation_fee') }}" placeholder="{{ __('index.consultation_fee') }}">
-                    @if ($errors->has('consultation_fee'))
-                    <div class="alert alert-danger mt-1  w-100">
-                        @foreach ($errors->get('consultation_fee') as $message)
-                            <p>{{ $message }}</p>
-                        @endforeach
-                    </div>
-                 @endif
-                </div>
-                <div class="mb-3">
-                    <label for="cv_path" class="form-label">{{ __('index.cv_path') }}</label>
-                    <input type="file" class="form-control" id="cv_path" name="cv_path">
-                    @if ($errors->has('cv_path'))
-                    <div class="alert alert-danger mt-1  w-100">
-                        @foreach ($errors->get('cv_path') as $message)
-                            <p>{{ $message }}</p>
-                        @endforeach
-                    </div>
-                 @endif
-                </div>
-            @endif
+            </div>
+            <div class="row">
 
+                <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="text" id="name" class="form-control"  name="name" value="{{ old('name') }}" placeholder="{{ __('index.name') }}" required autofocus autocomplete="name" />
+                        <div class="input-group-text"><span class="bi bi-person"></span></div>
+                      </div>
+                      <div class="error-message" id="name-error"></div>
+                </div>
+                <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('index.email') }}" />
+                        <div class="input-group-text"><span class="bi bi-envelope"></span></div>
 
+                      </div>
+                      <div class="error-message" id="email-error"></div>
+                </div>
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="password" id="password" class="form-control" placeholder="{{ __('index.password') }}" name="password"
+                        required autocomplete="new-password" />
+
+                        <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+                      </div>
+
+                      <div class="error-message" id="password-error"></div>
+                </div>
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="password" id="password_confirmation" class="form-control" placeholder="{{ __('index.password_confirmation') }}"  name="password_confirmation" required autocomplete="new-password" />
+                        <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+
+                      </div>
+                      <div class="error-message " id="password_confirmation-error"></div>
+                </div>
+                @if ($role != 'client')
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" placeholder="{{ __('index.phone') }}">
+                    </div>
+                    <div class="error-message" id="phone-error"></div>
+                </div>
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name') }}" placeholder="{{ __('index.company_name') }}">
+                    </div>
+                    <div class="error-message" id="company_name-error"></div>
+                </div>
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="experience_years" name="experience_years" value="{{ old('experience_years') }}" placeholder="{{ __('index.experience_years') }}">
+                    </div>
+                    <div class="error-message" id="experience_years-error"></div>
+                </div>
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="consultation_fee" name="consultation_fee" step="0.01" value="{{ old('consultation_fee') }}" placeholder="{{ __('index.consultation_fee') }}">
+                    </div>
+                    <div class="error-message" id="consultation_fee-error"></div>
+                </div>
+                 <div class=" col-sm-12 col-lg-6">
+                    <div class="input-group mb-3">
+                        <label for="cv_path" class="form-label ">{{ __('index.cv_path') }}</label> <br>
+                        <div>
+                            <input type="file" class="form-control" id="cv_path" name="cv_path">
+                        </div>
+                    </div>
+                    <div class="error-message" id="cv_path-error"></div>
+                </div>
+                @endif
+            </div>
             <!--begin::Row-->
             <div class="row">
               {{-- <div class="col-8">
@@ -233,6 +203,149 @@
         }
       });
     </script>
+    <!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Add jQuery Validation -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+
+
+<script>
+    var validationMessages = @json(trans('auth'));
+</script>
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("form").validate({
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 255
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    maxlength: 255,
+                    remote: {
+                        url: "/check-email", // تحقق من البريد الإلكتروني
+                        type: "post",
+                        data: {
+                            email: function() {
+                                return $("#email").val();
+                            }
+                        },
+                        // في حال كانت هناك مشكلة، الرسالة سيتم إرجاعها من هنا
+                        dataFilter: function(data) {
+                            // هنا يتم التعامل مع رد الخادم للتحقق من وجود البريد الإلكتروني
+                            var jsonData = JSON.parse(data);
+                            return jsonData ? 'true' : 'false'; // إذا كان موجودًا، رجع false
+                        }
+                    }
+                },
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                password_confirmation: {
+                    required: true,
+                    equalTo: "#password"
+                },
+                phone: {
+                    required: true,
+                    maxlength: 15
+                },
+                company_name: {
+                    required: true,
+                    maxlength: 255
+                },
+                experience_years: {
+                    required: true,
+                    min: 0
+                },
+                consultation_fee: {
+                    required: true,
+                    min: 0
+                },
+                cv_path: {
+                    required: true,
+                    extension: "pdf|doc|docx"
+                }
+            },
+            // messages: {
+            //     name: {
+            //         required: "الاسم مطلوب",
+            //         maxlength: "الاسم يجب ألا يتجاوز 255 حرفًا"
+            //     },
+            //     email: {
+            //         required: "البريد الإلكتروني مطلوب",
+            //         email: "يرجى إدخال بريد إلكتروني صحيح",
+            //         maxlength: "البريد الإلكتروني يجب ألا يتجاوز 255 حرفًا",
+            //         remote: "البريد الإلكتروني موجود بالفعل"
+            //     },
+            //     password: {
+            //         required: "كلمة المرور مطلوبة",
+            //         minlength: "كلمة المرور يجب أن تكون على الأقل 8 أحرف"
+            //     },
+            //     password_confirmation: {
+            //         required: "تأكيد كلمة المرور مطلوب",
+            //         equalTo: "كلمة المرور لا تتطابق"
+            //     },
+            //     phone: {
+            //         required: "رقم الهاتف مطلوب",
+            //         maxlength: "رقم الهاتف يجب ألا يتجاوز 15 حرفًا"
+            //     },
+            //     company_name: {
+            //         required: "اسم الشركة مطلوب",
+            //         maxlength: "اسم الشركة يجب ألا يتجاوز 255 حرفًا"
+            //     },
+            //     experience_years: {
+            //         required: "سنوات الخبرة مطلوبة",
+            //         min: "يجب أن تكون سنوات الخبرة أكبر من أو تساوي 0"
+            //     },
+            //     consultation_fee: {
+            //         required: "رسوم الاستشارة مطلوبة",
+            //         min: "رسوم الاستشارة يجب أن تكون أكبر من أو تساوي 0"
+            //     },
+            //     cv_path: {
+            //         required: "يرجى تحميل السيرة الذاتية",
+            //         extension: "يجب أن تكون السيرة الذاتية بصيغة PDF أو DOC أو DOCX"
+            //     }
+            // },
+            messages: {
+                name: validationMessages.name,
+                email: validationMessages.email,
+                password: validationMessages.password,
+                password_confirmation: validationMessages.password_confirmation,
+                phone: validationMessages.phone,
+                company_name: validationMessages.company_name,
+                experience_years: validationMessages.experience_years,
+                consultation_fee: validationMessages.consultation_fee,
+                cv_path: validationMessages.cv_path
+            },
+            errorPlacement: function(error, element) {
+                var errorMessageId = '#' + element.attr('id') + '-error';
+                $(errorMessageId).html(error);
+                $(errorMessageId).html(error).css('color', 'red');
+                $(errorMessageId).html(error).css('font-size', '13px');
+
+            },
+
+
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+
+
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
   </body>
