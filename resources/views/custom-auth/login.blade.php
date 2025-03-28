@@ -58,7 +58,7 @@
         <div class="card-body login-card-body">
           <p class="login-box-msg">{{ __('index.session') }}</p>
 
-         
+
           <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="input-group mb-3">
@@ -148,6 +148,7 @@
         }
       });
     </script>
+
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
   </body>

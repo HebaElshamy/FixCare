@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Consultation;
+use App\Models\ConsultationResponse;
+use App\Models\HomeService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,7 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'cv_path',          
+        'cv_path',
         'phone',
         'company_name',
         'experience_years',
@@ -49,4 +52,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public static function countByRole($role)
+    {
+        return self::where('role', $role)->count();
+    }
+
+    public function clientConsultations()
+    {
+        return $this->hasMany(Consultation::class, 'client_id');
+    }
+    public function clientHomeService()
+    {
+        return $this->hasMany(HomeService::class, 'client_id');
+    }
+
+    public function teamConsultations()
+    {
+        return $this->hasMany(Consultation::class, 'team_id');
+    }
+    public function responses()
+{
+    return $this->hasMany(ConsultationResponse::class);
+}
+
+
 }

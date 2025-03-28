@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+#fixcare{
+
+    margin: auto;
+display: flex;
+justify-content: center;
+
+}
+.back-ground{
+    background-image: url(../img/robot-1280x720_0.jpg);
+    background-size: cover;
+    background-position: center;
+
+}
+.card1 img{
+    border-image: fill;
+
+}
+
+
+
+
+
+
+
+
+
+h1{
+    color:lightseagreen;
+}
+#HOME ul li a{
+    color: aliceblue;
+    font-weight: bold;
+    padding-left: 20px;
+
+}

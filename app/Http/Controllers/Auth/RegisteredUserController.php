@@ -42,23 +42,18 @@ class RegisteredUserController extends Controller
             'role' => ['required', 'string', 'in:admin,expert,professional,trainee,client'],
         ]);
 
-        if ($validated['role'] !== 'client') {
-            $request->validate([
-                'cv_path' => ['required', 'file', 'mimes:pdf,doc,docx'],
-                'phone' => ['required', 'string', 'max:15'],
-                'company_name' => ['required', 'string', 'max:255'],
-                'experience_years' => ['required', 'integer', 'min:0'],
-                'consultation_fee' => ['required', 'numeric', 'min:0'],
-            ]);
-        }
+
 
         $user = new User();
         $user->role = $validated['role'];
-        $user->is_approved = ($validated['role'] === 'client') ? true : false;
-        $user->phone = $validated['phone'] ?? null;
-        $user->company_name = $validated['company_name'] ?? null;
-        $user->experience_years = $validated['experience_years'] ?? null;
-        $user->consultation_fee = $validated['consultation_fee'] ?? 0.00;
+        if($request->role != 'client'){
+            $user->is_approved = 0;
+            $user->phone = $request->phone;
+            $user->company_name = $request->company_name;
+            $user->experience_years = $request->experience_years;
+            $user->consultation_fee = $request->consultation_fee ;
+        }
+
 
 
 
@@ -80,19 +75,18 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        if (auth()->user()->role == 'client') {
+            return redirect()->route('client.index');
+        }
+
+        if (in_array(auth()->user()->role, ['expert', 'professional', 'trainee'])) {
+            return redirect()->route('team.index');
+        }
+
+        // return redirect(RouteServiceProvider::HOME);
     }
 
-    // public function checkEmail(Request $request)
-    // {
-    //     $email = $request->input('email');
 
-    //     // تحقق إذا كان البريد الإلكتروني موجودًا في قاعدة البيانات
-    //     $exists = User::where('email', $email)->exists();
-
-    //     return response()->json(['valid' => !$exists]);
-    // }
-// في ملف Controller الخاص بالتحقق من البريد الإلكتروني
 public function checkEmail(Request $request)
 {
     $email = $request->input('email');

@@ -2,8 +2,6 @@
 
 return [
 
-
-
     'login' => 'Login',
     'register' => 'Register',
     'language' => 'Language',
@@ -13,6 +11,7 @@ return [
     'password' => 'Password',
     'password_confirmation' => 'Confirm Password',
     'cv_path' => 'Upload CV',
+    'cv' => 'CV',
     'consultation_fee' => 'Consultation Fee',
     'experience_years' => 'Experience Years',
     'company_name' => 'Company Name',
@@ -23,9 +22,76 @@ return [
     'session' => 'Sign in to start your session',
     'register_new' => 'Register a new membership',
     'welcome' => 'Welcome',
+    'trainee' => 'Trainee',
+    'professional' => 'Professional',
+    'expert' => 'Expert',
+    'client' => 'Client',
+    'trainees' => 'Trainees',
+    'professionals' => 'Professionals',
+    'experts' => 'Experts',
+    'clients' => 'Client',
+    'team' => 'Team',
+    'logout' => 'Logout',
+    'faq' => ' FAQ',
+    'consultations' => ' Consultations',
+    'all_team' => ' All team',
+    'joining_requests' => ' Joining requests',
+    'role' => 'Role ',
+    'action' => 'Action ',
+    'view' => 'View ',
+    'edit' => 'Edit ',
+    'delete' => 'Delete ',
+    'approval' => 'Approval ',
+    'add_faq' => 'Add FAQ ',
+    'you' => 'You',
+    'send' => 'Send',
+    'write_msg' => 'Write your message here',
+    'help_you' => 'Hello! If you need any assistance, feel free to ask me!',
+    'instan_assistance' => 'Instant Assistance',
+    'my_consultations' => 'My Consultation History',
+    'new_consultation' => 'New consultation',
+    'managed_consultations' => 'Managed Consultations ',
+    'new_consultations' => 'New consultations',
+    'consultation_number' => 'Consultation Number',
+    'status' => 'Status',
+    'consultation_topic' => 'Consultation Topic',
+    'consultation_manager' => 'Consultation Manager',
+    'submission_date' => 'Submission Date',
+    'creation_date' => 'Creation Date',
+    'completed' => 'Completed',
+    'closed' => 'Closed',
+    'rejected' => 'Rejected',
+    'waiting_client' => 'Waiting Client',
+    'waiting_team' => 'Waiting for Supervisor',
+    'pending' => 'Pending',
+    'select' => 'Select',
+    'select_consultant' => 'Select Consultant',
+    'write_consultation' => 'Write your consultation',
+    'write_here' => 'Write here',
+    'created_consultation' => 'Created a new consultation request',
+    'replied' => 'Replied',
+    'dashboard' => 'Dashboard',
+    'reject' => 'Reject',
+    'approval' => 'Approval',
+    'consultation_number' => 'Consultation number',
+    'consultation' => 'Consultation',
+    'info' => 'Information',
+    'home_service' => 'Home service',
+    'location' => 'Location',
+    'new_home_service' => 'New Home service',
+    'zones' => 'Zones',
+    'zone' => 'Zone',
+    'location' => 'Location',
 
 
-      
+
+
+
+
+
+
+
+
 
 
 ];
